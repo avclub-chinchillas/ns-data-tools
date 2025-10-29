@@ -48,17 +48,28 @@ def main():
     # Set up command line arguments
     parser = argparse.ArgumentParser(description='Remove rows with duplicate values in a specified column from a CSV file.')
     parser.add_argument('input_file', help='Path to the input CSV file')
-    parser.add_argument('output_file', help='Path to save the output CSV file')
+    parser.add_argument('-o','--output', help="Output CSV path (default: input with _cleaned.csv suffix)")
     parser.add_argument('column_name', help='Name of the column to check for duplicates')
     parser.add_argument('-d', '--delimiter', default=',', 
                       help='CSV delimiter character (default: comma)')
     
     # Parse arguments
     args = parser.parse_args()
-    
+
+    # Check for output path, if not provided, append suffix
+    if args.output:
+        output_path = args.output
+    else:
+        if args.input_csv.lower().endswith('.csv'):
+            output_path = args.input_csv[:-4] + '_cleaned.csv'
+        else:
+            output_path = args.input_csv + '_cleaned.csv'
+
     print(WELCOME_MESSAGE)
     # Call the function to remove duplicates
-    remove_duplicates(args.input_file, args.output_file, args.column_name, args.delimiter)
+    print(f"[*] Removing duplicate rows in {args.input_file} based on column: {args.column_name}")
+    remove_duplicates(args.input_file, output_path, args.column_name, args.delimiter)
+    print(f"[*] Cleaned CSV saved to {args.output_file}, exiting...")
 
 if __name__ == "__main__":
     main()
