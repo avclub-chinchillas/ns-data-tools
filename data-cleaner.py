@@ -1,6 +1,7 @@
 import pandas as pd
 import argparse
 import csv
+from constants import WELCOME_MESSAGE
 
 def remove_duplicates(input_file, output_file, column_name, delimiter=','):
     """
@@ -55,6 +56,7 @@ def main():
     # Parse arguments
     args = parser.parse_args()
     
+    print(WELCOME_MESSAGE)
     # Call the function to remove duplicates
     remove_duplicates(args.input_file, args.output_file, args.column_name, args.delimiter)
 

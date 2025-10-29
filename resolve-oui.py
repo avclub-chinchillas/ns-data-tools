@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Resolve MAC vendor names for MAC addresses stored in a CSV file.
 
 This script reads an input CSV file, looks up vendor names from https://api.macvendors.com/$MAC
@@ -7,7 +6,7 @@ for a specified MAC column, and writes an output CSV with a new column containin
 It respects a maximum number of requests (default 1000) and a maximum rate (default 1 req/sec).
 """
 from __future__ import annotations
-
+from constants import WELCOME_MESSAGE
 import argparse
 import csv
 import sys
@@ -16,7 +15,6 @@ import logging
 from typing import Optional
 
 import requests
-
 
 def lookup_vendor(mac: str, timeout: float = 5.0, retries: int = 2) -> Optional[str]:
     """Query api.macvendors.com for the given MAC address.
@@ -120,6 +118,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    print(WELCOME_MESSAGE)
 
     if args.output:
         output_path = args.output

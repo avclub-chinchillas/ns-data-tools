@@ -1,5 +1,6 @@
 import csv
 import argparse
+from constants import WELCOME_MESSAGE
 
 def remove_blanks(input_file, output_file):
     """
@@ -28,6 +29,7 @@ def main():
     # Parse arguments
     args = parser.parse_args()
 
+    print(WELCOME_MESSAGE)
     # Call the function to remove blank rows
     remove_blanks(args.input_file, args.output_file)
 
