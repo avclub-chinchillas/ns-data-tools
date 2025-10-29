@@ -19,9 +19,10 @@ python3 clean-blanks.py input.csv output.csv
 Usage example:
 
 ```
-python3 data-cleaner.py input.csv output.csv search_column
+python3 data-cleaner.py input.csv search_column
 ```
 Options
+- `-o, --output` : Output CSV path (default: input filename with `_cleaned.csv` suffix)
 - `-d` : CSV delimiter character, default=','
 
 ## resolve-oui.py : Wi-Fi MAC Vendor Resolver for CSV
@@ -59,7 +60,5 @@ python3 resolve_oui_csv.py devices.csv mac -o devices_with_vendors.csv --max-req
 Notes
 - If the input CSV contains more rows than `--max-requests`, rows after the cap will have `vendor=SKIPPED`.
 - Empty MAC values produce empty vendor cells.
-
-License: MIT
 
 
